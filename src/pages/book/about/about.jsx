@@ -13,7 +13,7 @@ export function About(props) {
             </div>
             <div className={style.info}>
                 <div className={style.info__title}>{props.info.title}</div>
-                {props.info.authors.map((el, id) =>
+                {props.info?.authors.map((el, id) =>
                     <div className={style.info__author}>{el}</div>
                 )}
                 {props.info.delivery === null && props.info.booking === null

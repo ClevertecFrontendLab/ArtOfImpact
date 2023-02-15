@@ -32,6 +32,14 @@ export function BookPage() {
         dispatch(bookFetch({ id }))
     }, [])
 
+    const body = document.querySelector("body")
+
+    if (status === "loading") {
+        body.style.overflow = "hidden"
+    } else {
+        body.style.overflow = "auto"
+    }
+
     return (
         <>
             < Header />
