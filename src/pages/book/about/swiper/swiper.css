@@ -1,0 +1,42 @@
+.img__photo {
+    height: 85px;
+    width: 65px;
+
+}
+
+.img__small {
+    height: 600px;
+    border-radius: 10px;
+}
+
+.mySlider {
+    width: 15% !important;
+}
+
+.mySlider.active {
+    border: 2px solid orange !important;
+}
+
+.mySwiper {
+    padding-top: 10px;
+}
+
+.mySwiper>div {
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width:1000px) {
+    .img__photo {
+        height: auto;
+        width: 140px;
+    }
+
+}
+
+@media (max-width:700px) {
+    .img__photo {
+        width: 190px;
+        height: 260px;
+    }
+}

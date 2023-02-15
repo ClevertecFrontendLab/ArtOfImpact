@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 170px;
+    justify-content: space-between;
+}
+
+.container__text {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    padding-left: 16px;
+    color: #363636;
+}
+
+@media (max-width:700px) {
+    .container {
+        align-items: center;
+    }
+
+    .container__img {
+        width: 218px;
+    }
+
+    .container__text {
+        font-weight: 700;
+        letter-spacing: 0.1px;
+        font-size: 18px;
+    }
+}
