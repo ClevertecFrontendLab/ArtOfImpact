@@ -13,16 +13,16 @@ import { Contract } from './pages/contract/contract';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <HashRouter>
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/books/all/:bookId' element={<BookPage />} />
-        <Route path='/Rule' element={<Rule />} />
-        <Route path='/Contract' element={<Contract />} />
-      </Routes>
-    </HashRouter>
-  </Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/books/all/:bookId' element={<BookPage />} />
+          <Route path='/Rule' element={<Rule />} />
+          <Route path='/Contract' element={<Contract />} />
+        </Routes>
+      </HashRouter>
+    </Provider>
+  </React.StrictMode>
 );
