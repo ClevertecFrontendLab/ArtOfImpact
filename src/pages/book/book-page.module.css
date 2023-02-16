@@ -1,0 +1,164 @@
+.header {
+    background: #F9F9FA;
+    margin-bottom: 42px;
+    padding: 0px 15px;
+}
+
+.number {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #A7A7A7;
+    letter-spacing: 0.1px;
+    padding-left: 6px;
+}
+
+.headerBox {
+    max-width: 1110px;
+    margin: auto;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    background: #F9F9FA;
+    padding: 0px 15px;
+}
+
+.headerBox__title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+    max-width: 1110px;
+}
+
+.estimation {
+    margin: auto;
+    max-width: 1110px;
+    padding: 35px 15px 65px 15px
+}
+
+.estimation__title {
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.estimation__hr {
+    max-width: 350px;
+    margin-left: 0;
+    border: 1px solid #EBEBEB;
+}
+
+.comments {
+    max-width: 1110px;
+    margin: auto;
+    padding: 60px 15px 62px 15px;
+}
+
+.comments__zero {
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #363636;
+    padding-bottom: 42px;
+}
+
+.feedback {
+    max-width: 1110px;
+    margin: auto;
+    padding: 0px 15px;
+}
+
+.feedback__btn {
+    width: 350px;
+    height: 52px;
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    line-height: 150%;
+    text-transform: uppercase;
+    margin-bottom: 62px;
+}
+
+.loaderBox {
+    display: flex;
+    max-width: 1110px;
+    min-height: 54vh;
+    margin: auto;
+    background-color: white;
+    margin: 47px auto 62px auto;
+    padding: 0px 15px;
+}
+
+@media (max-width:1000px) {
+    .header {
+        padding: 0;
+    }
+
+    .headerBox {
+        padding: 0px 64px;
+    }
+
+    .feedback__btn {
+        width: 100%;
+    }
+
+    .estimation {
+        padding: 42px 64px 65px 64px;
+    }
+
+    .comments {
+        padding: 62px 64px 0px 64px;
+    }
+
+    .feedback {
+        padding: 0px 64px;
+    }
+
+    .loaderBox {
+        padding: 0px 64px;
+    }
+}
+
+@media (max-width:700px) {
+    .headerBox__title {
+        padding: 20px 0px;
+    }
+
+    .estimation {
+        padding: 42px 16px 28px 16px;
+    }
+
+    .estimation__hr {
+        border: 1px solid #F9F9FA;
+    }
+
+    .comments {
+        padding: 42px 16px 0px 16px;
+    }
+
+    .feedback {
+        padding: 0px 16px;
+    }
+
+    .feedback__btn {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:540px) {
+    .loaderBox {
+        padding: 0px 20px;
+    }
+
+    .headerBox {
+        padding: 0px 20px;
+    }
+}
