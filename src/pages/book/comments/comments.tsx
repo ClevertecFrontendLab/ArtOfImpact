@@ -16,11 +16,13 @@ export function Comments({ comments }: IBook) {
         <>
             <div className={style.header}>
                 <span>Отзывы <span className={style.number}>{comments?.length}</span></span>
-                <div className={cn(style.boxArrow, { [style.active]: isArrow })} onClick={() => (setIsArrow(!isArrow))} role="presentation" data-test-id='button-hide-reviews'>
-                    <span className={cn(style.arrow, { [style.active]: isArrow })} /></div>
+                <div className={cn(style.boxArrow, { [style.active]: isArrow })} onClick={() => (setIsArrow(!isArrow))}
+                    role="presentation" data-test-id='button-hide-reviews'>
+                    <span className={cn(style.arrow, { [style.active]: isArrow })} />
+                </div>
             </div>
             <hr className={cn(style.hr, { [style.visible]: !isArrow })} />
-            {comments?.map((el) =>
+            {comments?.map((el, id) =>
                 <div className={cn(style.answer, { [style.hidden]: !isArrow })}>
                     <div className={style.title}>
                         <img src={user_coment} alt="user" className={style.title__icon} />

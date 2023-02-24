@@ -46,17 +46,16 @@ export function BookPage() {
         }
     }
 
-    function Back(el: string[]) {
+    function Back() {
         navigate(`${location.state}`)
-        dispatch(filterFetch({ name: el[0], path: "", id: 0 }))
     }
 
     return (
         <>
             <div className={style.header}>
                 <div className={style.headerBox}>
-                    <span className={style.headerBox__title} onClick={() => Back(book.categories)} role="presentation" data-test-id='breadcrumbs-link'>{location.state === "/books/all" ? "Все книги" : book.categories}</span>
-                    <span className={style.headerBox__title}> / </span>
+                    <span className={style.headerBox__title} onClick={() => Back()} role="presentation" data-test-id='breadcrumbs-link'>{location.state === "/books/all" ? "Все книги" : book.categories}</span>
+                    <span className={style.headerBox__subtitle}>/</span>
                     <span className={style.headerBox__title} data-test-id='book-name'>{book.title}</span>
                 </div>
             </div>

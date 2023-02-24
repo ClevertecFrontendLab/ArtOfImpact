@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 import style from "./main-content.module.scss"
 import { BodyRow } from './content-body/body-row';
@@ -22,15 +21,17 @@ export function Content() {
     const location = useLocation()
     const dispatch = useAppDispatch()
     const [isButton, setIsButton] = useState<boolean>(true)
-    const { status, countBooks, content } = useSelector(selectContent)
+    const { status } = useSelector(selectContent)
+    const { asides } = useSelector(selectAside)
 
     useEffect(() => {
         if (location.pathname === '/books/all') {
             dispatch(contentFetch())
         } else {
+            dispatch(addContent([]))
             const name = location.pathname.split("/")
-            const rusName = countBooks.filter((el) => el.path === name[name.length - 1])
-            dispatch(filterFetch({ name: rusName[0].name, id: 0, path: "" }))
+            const rusName = asides.filter((el) => el.path === name[name.length - 1])
+            dispatch(filterFetch(rusName[0]))
             dispatch(setActiveNumber(rusName[0].id))
         }
     }, [])

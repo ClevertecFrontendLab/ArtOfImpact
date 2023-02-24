@@ -14,6 +14,6 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>
-
+export const aside = store.getState().aside.asides
 type AppDispatch = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>()

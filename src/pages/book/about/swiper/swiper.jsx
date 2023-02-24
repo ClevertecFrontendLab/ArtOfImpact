@@ -8,14 +8,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import "./swiper.css"
 import cat from "../../../../photo/image/cat.svg"
+import { BASE_URL } from "../../../host-url";
 
 
 export function Swipers(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [swiper, setSwiper] = useState(0)
-
-    const host = "https://strapi.cleverland.by"
-
 
     return (
         <>
@@ -34,7 +32,7 @@ export function Swipers(props) {
                     :
                     props.info?.map((el, id) =>
                         <SwiperSlide>
-                            <img src={host + el.url} alt="book" className="img__small" loading="lazy" />
+                            <img src={BASE_URL + el.url} alt="book" className="img__small" loading="lazy" />
                         </SwiperSlide>)}
             </Swiper>
             {props.info?.length > 1 &&
@@ -54,7 +52,7 @@ export function Swipers(props) {
                             </SwiperSlide>
                             :
                             <SwiperSlide className={cn("mySlider", { "active": id === swiper })} onClick={() => (setSwiper(id))} data-test-id='slide-mini'>
-                                <img src={host + el.url} alt="book" className="img__photo" loading="lazy" />
+                                <img src={BASE_URL + el.url} alt="book" className="img__photo" loading="lazy" />
                             </SwiperSlide>
                     )}
                 </Swiper>

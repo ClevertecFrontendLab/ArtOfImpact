@@ -7,7 +7,7 @@ export interface ContentSliceState {
     book: IBook,
     status: string;
     isOpenMenu: boolean;
-    countBooks: CountBooks[];
+    countBooks: number[];
     sort: boolean,
     search: '',
 }

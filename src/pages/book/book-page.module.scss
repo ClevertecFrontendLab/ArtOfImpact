@@ -21,6 +21,11 @@
             max-width: 1110px;
         }
 
+        .headerBox__subtitle {
+            margin: 0px 5px;
+            color: #A7A7A7;
+        }
+
         @media (max-width:700px) {
             .headerBox__title {
                 padding: 20px 0px;

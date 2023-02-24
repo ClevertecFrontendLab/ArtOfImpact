@@ -5,8 +5,8 @@ import style from "./body-row.module.scss"
 import cat from "../../../../photo/image/cat.svg"
 import { Rating } from "../../../rating-fn/rating"
 import { selectContent } from "../../../../redux/slices/content/content-selector"
-import { IContent } from "../../../../redux/slices/content/content-type"
 import { FilterRed } from "./red-color"
+import { BASE_URL } from "../../../host-url"
 
 
 
@@ -16,15 +16,13 @@ export function BodyRow() {
     const navigate = useNavigate()
     const { content, search } = useSelector(selectContent)
 
-    const host = "https://strapi.cleverland.by"
-
     const FilterContent = content.filter((el) => {
         if (el.title.toLowerCase().includes(search.toLowerCase())) {
             return true;
         }
         return false;
     })
-    console.log(FilterContent)
+
     return (
         <div className={style.container}>
             {content.length < 1 ?
@@ -32,11 +30,11 @@ export function BodyRow() {
                     <div className={style.noFind__text} data-test-id='empty-category'>В этой категории книг ещё нет</div>
                 </div>
                 : FilterContent.length > 0 ? FilterContent.map((el) =>
-                    <div className={style.item} data-test-id='card'>
+                    <div className={style.item} data-test-id="card" onClick={() => navigate(`${location.pathname}/${el.id}`, { state: location.pathname })} role="presentation">
                         <div className={style.header}>
                             {el.image === null ?
-                                <img src={cat} alt="book" className={style.header__image} loading="lazy" onClick={() => navigate(`${location.pathname}/${el.id}`, { state: location.pathname })} role="presentation" /> :
-                                <img src={host + el.image.url} alt="book" className={style.header__image} onClick={() => navigate(`${location.pathname}/${el.id}`, { state: location.pathname })} role="presentation" />
+                                <img src={cat} alt="book" className={style.header__image} loading="lazy" role="presentation" /> :
+                                <img src={BASE_URL + el.image.url} alt="book" className={style.header__image} loading="lazy" />
                             }
                             <div className={style.header__estimation}>
                                 {el.rating !== null ?

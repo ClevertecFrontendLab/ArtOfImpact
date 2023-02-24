@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import cn from "classnames"
 import style from "./content-aside.module.scss"
-import { asideFetch, setActiveNumber } from "../../../../redux/slices/aside/aside-slice"
+import { setActiveNumber } from "../../../../redux/slices/aside/aside-slice"
 import { toggleBurger } from "../../../../redux/slices/header/header-slice"
 import { contentFetch, filterFetch, setIsOpenMenu } from "../../../../redux/slices/content/content-slice"
 import { selectContent } from "../../../../redux/slices/content/content-selector"
@@ -36,11 +36,7 @@ export function Aside() {
 
     useEffect(() => {
         setWidth(window.innerWidth)
-        dispatch(asideFetch())
     }, [])
-
-    const [isActive, setIsActive] = useState(0)
-
 
     const toggleMenuMode = (() => {
         if (status === "error") {
@@ -48,6 +44,7 @@ export function Aside() {
         } else {
             dispatch(setIsOpenMenu(!isOpenMenu))
         }
+
     })
 
     const blockRef = useRef<HTMLDivElement>(null)
@@ -80,9 +77,11 @@ export function Aside() {
     }
 
     return (
-        <div className={cn(style.container, { [style.active]: burger })} ref={blockRef} onClick={(event) => event.stopPropagation()} role="presentation" data-test-id='burger-navigation'>
+        <div className={cn(style.container, { [style.active]: burger })} ref={blockRef} onClick={(event) => event.stopPropagation()}
+            role="presentation" data-test-id='burger-navigation'>
             <Link to="/books/all" className={cn(style.link, { [style.active]: location.pathname === "/books/all" })}>
-                <h2 className={cn(style.case, { [style.active]: location.pathname === "/books/all" })} onClick={() => (toggleMenuMode())} role="presentation" data-test-id={width < 1000 ? 'burger-showcase' : 'navigation-showcase'}>Витрина книг</h2>
+                <h2 className={cn(style.case, { [style.active]: location.pathname === "/books/all" })} onClick={() => (toggleMenuMode())}
+                    role="presentation" data-test-id={width < 1000 ? 'burger-showcase' : 'navigation-showcase'}>Витрина книг</h2>
                 {location.pathname === "/books/all" ?
                     <div className={cn(style.boxArrow, { [style.active]: !isOpenMenu })} onClick={() => (toggleMenuMode())} role="presentation">
                         <span className={cn(style.arrow, { [style.active]: !isOpenMenu })} /></div>
@@ -93,22 +92,26 @@ export function Aside() {
             </Link>
             <div className={cn(style.listContainer, { [style.visible]: !isOpenMenu })} >
                 <div className={style.list} onClick={() => (dispatch(toggleBurger(false)))} role="presentation">
-                    <h3 className={cn(style.list__text, { [style.active]: activeNumber === 0 })} onClick={() => (activeDefault())} role="presentation" data-test-id={width < 1000 ? 'burger-books' : 'navigation-books'}>Все книги</h3>
+                    <h3 className={cn(style.list__text, { [style.active]: activeNumber === 0 })} onClick={() => (activeDefault())} role="presentation"
+                        data-test-id={width < 1000 ? 'burger-books' : 'navigation-books'}>Все книги</h3>
                 </div>
                 {asides?.map((el, id: number) =>
                     <div className={style.list} onClick={() => (dispatch(toggleBurger(false)))} role="presentation" >
-                        <h3 className={cn(style.list__text, { [style.active]: activeNumber === el.id })} onClick={() => (activeFilter(el))} role="presentation" data-test-id={width < 1000 ? `burger-${el.path}` : `navigation-${el.path}`}>
+                        <h3 className={cn(style.list__text, { [style.active]: activeNumber === el.id })} onClick={() => (activeFilter(el))} role="presentation"
+                            data-test-id={width < 1000 ? `burger-${el.path}` : `navigation-${el.path}`}>
                             {el.name}</h3>
-                        <span data-test-id={width < 1000 ? `burger-book-count-for-${el.path}` : `navigation-book-count-for-${el.path}`} >{countBooks[id].count}</span>
+                        <span data-test-id={width < 1000 ? `burger-book-count-for-${el.path}` : `navigation-book-count-for-${el.path}`} >{countBooks[id]}</span>
                     </div>
                 )}
             </div>
             <Link to="/Rule" >
-                <div className={cn(style.rule, { [style.active]: location.pathname === "/Rule" })} onClick={() => (dispatch(setIsOpenMenu(false)))} role="presentation" data-test-id={width < 1000 ? 'burger-terms' : 'navigation-terms'}>
+                <div className={cn(style.rule, { [style.active]: location.pathname === "/Rule" })} onClick={() => (dispatch(setIsOpenMenu(false)))} role="presentation"
+                    data-test-id={width < 1000 ? 'burger-terms' : 'navigation-terms'}>
                     Правила пользования </div>
             </Link>
             <div>
-                <div className={cn(style.contract, { [style.active]: location.pathname === "/Contract" })} onClick={() => (dispatch(setIsOpenMenu(false)))} role="presentation" data-test-id={width < 1000 ? 'burger-contract' : 'navigation-contract'}>
+                <div className={cn(style.contract, { [style.active]: location.pathname === "/Contract" })} onClick={() => (dispatch(setIsOpenMenu(false)))} role="presentation"
+                    data-test-id={width < 1000 ? 'burger-contract' : 'navigation-contract'}>
                     <Link to="/Contract" > Договор оферты</Link>
                 </div>
             </div>

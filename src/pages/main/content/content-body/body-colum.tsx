@@ -4,18 +4,16 @@ import style from "./body-colum.module.scss"
 import cat from "../../../../photo/image/cat.svg"
 import { Rating } from "../../../rating-fn/rating"
 import { selectContent } from "../../../../redux/slices/content/content-selector"
+import { BASE_URL } from "../../../host-url"
 
 
 export function BodyColum() {
-    const host = "https://strapi.cleverland.by"
-
     const { content, search } = useSelector(selectContent)
     const location = useLocation()
     const navigate = useNavigate()
 
     const FilterContent = content.filter((el) => {
         if (el.title.toLowerCase().includes(search.toLowerCase())) {
-            console.log(el.title.toLowerCase())
             return true;
         }
         return false;
@@ -30,8 +28,11 @@ export function BodyColum() {
                 : FilterContent.length > 0 ? FilterContent.map((el) =>
                     <div className={style.item} data-test-id='card'>
                         {el.image === null ?
-                            <NavLink to={`/books/all/${el.id}`}><img src={cat} alt="book" className={style.item__image} /></NavLink> :
-                            <NavLink to={`/books/all/${el.id}`}><img src={host + el.image.url} alt="book" className={style.item__image} loading="lazy" /></NavLink>
+                            <img src={cat} alt="book" className={style.item__image} loading="lazy"
+                                role="presentation" onClick={() => navigate(`${location.pathname}/${el.id}`, { state: location.pathname })} />
+                            :
+                            <img src={BASE_URL + el.image.url} alt="book" className={style.item__image} loading="lazy"
+                                role="presentation" onClick={() => navigate(`${location.pathname}/${el.id}`, { state: location.pathname })} />
                         }
                         <div className={style.colum}>
                             <NavLink to={`/books/all/${el.id}`}><span className={style.colum__title}>{el.title}</span></NavLink>
