@@ -5,12 +5,10 @@ import 'swiper/css/pagination';
 import { Pagination } from "swiper";
 import "./swiper-colum.css"
 import cat from "../../../../photo/image/cat.svg"
+import { BASE_URL } from "../../../host-url";
 
 
 export function SwiperColum(props) {
-
-    const host = "https://strapi.cleverland.by"
-
 
     return (
         <Swiper
@@ -29,7 +27,7 @@ export function SwiperColum(props) {
                     </SwiperSlide>
                     :
                     <SwiperSlide data-test-id='slide-mini'>
-                        <img src={host + el.url} alt="book" className="photo" loading="lazy" />
+                        <img src={BASE_URL + el.url} alt="book" className="photo" loading="lazy" />
                     </SwiperSlide>
             )}
         </Swiper>

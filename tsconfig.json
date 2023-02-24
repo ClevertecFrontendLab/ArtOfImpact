@@ -1,10 +1,5 @@
 {
     "compilerOptions": {
-        "incremental": true,
-        "removeComments": false,
-        "preserveConstEnums": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
         "target": "es5",
         "lib": [
             "dom",
