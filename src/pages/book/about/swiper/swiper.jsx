@@ -27,18 +27,17 @@ export function Swipers(props) {
                 className="mySwiper2"
                 data-test-id='slide-big'
             >
-                {props.info.map((el, id) =>
-                    props.info === null ?
-                        <SwiperSlide >
-                            <img src={cat} alt="book" className="img__small" />
-                        </SwiperSlide>
-                        :
+                {props.info === null ?
+                    <SwiperSlide >
+                        <img src={cat} alt="book" className="img__small" />
+                    </SwiperSlide>
+                    :
+                    props.info?.map((el, id) =>
                         <SwiperSlide>
                             <img src={host + el.url} alt="book" className="img__small" loading="lazy" />
-                        </SwiperSlide>
-                )}
+                        </SwiperSlide>)}
             </Swiper>
-            {props.info.length > 1 &&
+            {props.info?.length > 1 &&
                 <Swiper
                     onSwiper={setThumbsSwiper}
                     spaceBetween={10}

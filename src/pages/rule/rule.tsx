@@ -1,10 +1,11 @@
-import style from "./contract.module.scss"
+import style from "./rule.module.scss"
 import { Aside } from "../main/content/content-aside/content-aside";
 import { Header } from "../header/header";
 import { Footer } from "../footer/footer";
 
 
-export function Contract() {
+
+export function Rule() {
 
     return (
         <>
@@ -12,7 +13,7 @@ export function Contract() {
             <div className={style.container}>
                 <Aside />
                 <div className={style.colum}>
-                    <span className={style.colum__title}>Договор оферты</span>
+                    <span className={style.colum__title}>Правила пользования</span>
                     <span className={style.colum__subtitle}>
                         1. Идейные соображения высшего порядка, а также высокое качество позиционных исследований представляет
                         собой интересный эксперимент проверки экспериментов, поражающих по своей масштабности и грандиозности.
