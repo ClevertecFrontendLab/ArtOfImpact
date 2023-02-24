@@ -24,7 +24,7 @@ export function BodyRow() {
         }
         return false;
     })
-
+    console.log(FilterContent)
     return (
         <div className={style.container}>
             {content.length < 1 ?
