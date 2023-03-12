@@ -8,7 +8,6 @@ export const RequireToken = ({ children }: any) => {
     const token = localStorage.getItem("token")
     const fromPage = location.state?.from?.pathname || "/"
 
-    console.log(fromPage)
     if (token !== null) {
         return <Navigate to="/books/all" state={{ from: location }} />
     }

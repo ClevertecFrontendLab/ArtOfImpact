@@ -4,15 +4,20 @@ import cn from "classnames"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useAppDispatch } from "../../../redux/store";
 import style from "./password.module.scss"
-import { EyeAlso } from "../../entrance/login-password/eye/eye-also"
 import { resetFetch } from "../../../redux/slices/auth/auth"
 import { RecPassword } from "./recovery-password/recovery-password";
+import { Eye } from "../../entrance/login-password/eye/eye";
+import { ConfirmationPassword } from "./confirmation-password/confirmation-password";
 
-
+interface IRecoveryPassword {
+    password: string,
+    passwordConfirmation: string,
+    code: string
+}
 
 export function RecoveryPassword() {
 
-    const { register, handleSubmit, getFieldState, watch, setValue, reset, setError, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, getFieldState, watch, setValue, reset, setError, formState: { errors, isValid } } = useForm<IRecoveryPassword>({
         mode: "all"
     })
     const dispatch = useAppDispatch()
@@ -31,7 +36,7 @@ export function RecoveryPassword() {
         dispatch(resetFetch({ password, passwordConfirmation, code }))
     }
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: IRecoveryPassword) => {
         PasswordRecovery(watchFields[0], watchFields[1], Code)
     };
 
@@ -43,33 +48,9 @@ export function RecoveryPassword() {
             <form onSubmit={handleSubmit(onSubmit)} className={style.form} data-test-id="reset-password-form">
                 <RecPassword register={register} errors={errors} getFieldState={getFieldState} watchFields={watch("password")}
                     setValue={setValue} style={style} />
-                <div className={style.form__input}>
-                    <input type={passShowAlso ? "password" : "text"} id="PasswordAlso"
-                        className={style.input}
-                        {...register("passwordConfirmation", {
-                            required: "Обезательнок поле для заполнения",
-                            minLength: 8,
-                        })}
-                        onFocus={() => {
-                            setValidateConfirmation("")
-                        }}
-                        onBlur={() => {
-                            if (watchFields[1]?.length < 1) {
-                                setValidateConfirmation("length")
-                            } else if (watchFields[0] !== watchFields[1]) {
-                                setValidateConfirmation("coincidences")
-                            } else if (watchFields[1]?.length < 8) {
-                                setError("passwordConfirmation", { type: "minLength" })
-                            }
-                        }}
-                        required={true}
-                        name="passwordConfirmation"
-                    />
-                    <EyeAlso passShowAlso={passShowAlso} setPassShowAlso={setPassShowAlso} style={style} />
-                    <label htmlFor="passwordConfirmation" className={style.placeholder}>Пароль</label>
-                    {validateConfirmation === "length" ? <div className={style.errorFull}><span className={style.TextRed} data-test-id="hint">Поле не может быть пустым</span></div>
-                        : validateConfirmation === "coincidences" ? <div className={style.errorFull}><span className={style.TextRed} data-test-id="hint">Пароли не совпадают</span></div> : <div className={style.text} />}
-                </div>
+                <ConfirmationPassword register={register} style={style} passShowAlso={passShowAlso} setPassShowAlso={setPassShowAlso}
+                    validateConfirmation={validateConfirmation} setValidateConfirmation={setValidateConfirmation} watchFields={watchFields}
+                    setError={setError} />
                 <button type="submit" className={cn(style.form__button, { [style.disabled]: !isValid })} disabled={!isValid}> сохранить изменения</button>
             </form>
             <div className={style.containerFooter}>

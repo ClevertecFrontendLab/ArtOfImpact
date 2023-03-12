@@ -2,10 +2,11 @@ import { useSelector } from "react-redux"
 import { selectAuth } from "../../redux/slices/auth/auth-selector";
 import { Registration } from "./registration/registration";
 import style from "./authorization.module.scss"
-import { Error } from "./error/error";
-import { Coincidence } from "./coincidence/coincidence";
-import { Success } from "./success/success";
 import { Loader } from "../loader/loader";
+import { StatusBlock } from "../status-block/error-block/status-block";
+import { ErrorCoincidence, ErrorText, SuccessRegistration } from "../status-block/error-info/error-info";
+import { SuccessBlock } from "../status-block/success-block/success-block";
+
 
 
 export function LayoutAuthorization() {
@@ -20,9 +21,9 @@ export function LayoutAuthorization() {
                 </span>
                 {statusLoading ? <Loader /> :
                     statusRegistration === "registration" ? <Registration /> :
-                        statusRegistration === "error" ? <Error /> :
-                            statusRegistration === "coincidences" ? <Coincidence /> :
-                                statusRegistration === "success" ? <Success /> :
+                        statusRegistration === "error" ? <StatusBlock  {...ErrorText} /> :
+                            statusRegistration === "coincidences" ? <StatusBlock  {...ErrorCoincidence} /> :
+                                statusRegistration === "success" ? <SuccessBlock {...SuccessRegistration} /> :
                                     null}
             </div>
         </div>

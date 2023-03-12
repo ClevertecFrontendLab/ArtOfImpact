@@ -10,13 +10,16 @@ import { selectAuth } from "../../../redux/slices/auth/auth-selector"
 import { Identifier } from "./identifier/identifier"
 import { IdentifierPassword } from "./password/password"
 
-
+interface ILoginPassword {
+    identifier: string,
+    password: string,
+}
 
 export function LoginPassword() {
 
     const dispatch = useAppDispatch()
 
-    const { register, handleSubmit, setValue, watch, getFieldState, reset, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, setValue, watch, getFieldState, reset, formState: { errors, isValid } } = useForm<ILoginPassword>({
         mode: "all"
     })
 
@@ -27,16 +30,15 @@ export function LoginPassword() {
 
     const { token, invalidData } = useSelector(selectAuth)
 
-    console.log(fromPage)
-    function Login(identifier: string, password: string) {
+    function Login({ identifier, password }: ILoginPassword) {
         dispatch(loginFetch({ identifier, password }))
         reset()
     }
 
     const watchFields = watch(["identifier", "password"])
 
-    const onSubmit = (data: any) => {
-        Login(watchFields[0], watchFields[1])
+    const onSubmit = (data: ILoginPassword) => {
+        Login({ identifier: watchFields[0], password: watchFields[1] })
     };
 
     return (

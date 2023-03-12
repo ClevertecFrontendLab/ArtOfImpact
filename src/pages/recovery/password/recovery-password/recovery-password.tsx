@@ -1,13 +1,14 @@
 import { useState } from "react"
 import CheckCircle from "../../../../photo/icon/CheckCircle.svg"
 import { Eye } from "../../../entrance/login-password/eye/eye"
+import { AvailabilityNumber, PasswordLength, Uppercase } from "../../../reg-ex/reg-ex"
 
 
 export function RecPassword({ register, errors, getFieldState, watchFields, style, setValue }: any) {
 
     const [passShow, setPassShow] = useState(true)
 
-    const [errorLength, setErrorLength] = useState<any>(null)
+    const [errorLength, setErrorLength] = useState("")
 
     return (
         <div className={style.form__input}>
@@ -16,33 +17,33 @@ export function RecPassword({ register, errors, getFieldState, watchFields, styl
                 {...register("password", {
                     required: "Поле не может быть пустым",
                     validate: {
-                        zeroTrue: (value: any) => {
-                            if (/^[0-9a-zA-Zа-яА-ЯёЁ!@#$%^&*]{8,}$/.test(value) === false && /[\d]/.test(value) === false && !/^[^A-ZА-ЯЁ]*$/.test(value) === false) {
+                        zeroTrue: (value: string) => {
+                            if (PasswordLength.test(value) === false && AvailabilityNumber.test(value) === false && !Uppercase.test(value) === false) {
                                 return false
                             }
                             return true
                         },
-                        UppercaseAndNumber: (value: any) => {
-                            if (/^[0-9a-zA-Zа-яА-ЯёЁ!@#$%^&*]{8,}$/.test(value) === true && /[\d]/.test(value) === false && !/^[^A-ZА-ЯЁ]*$/.test(value) === false) {
+                        UppercaseAndNumber: (value: string) => {
+                            if (PasswordLength.test(value) === true && AvailabilityNumber.test(value) === false && !Uppercase.test(value) === false) {
                                 return false
                             }
                             return true
                         },
-                        net8andNumber: (value: any) => {
-                            if (/^[0-9a-zA-Zа-яА-ЯёЁ!@#$%^&*]{8,}$/.test(value) === false && /[\d]/.test(value) === false && !/^[^A-ZА-ЯЁ]*$/.test(value) === true) {
+                        net8andNumber: (value: string) => {
+                            if (PasswordLength.test(value) === false && AvailabilityNumber.test(value) === false && !Uppercase.test(value) === true) {
                                 return false
                             }
                             return true
                         },
-                        net8andUppercase: (value: any) => {
-                            if (/^[0-9a-zA-Zа-яА-ЯёЁ!@#$%^&*]{8,}$/.test(value) === false && /[\d]/.test(value) === true && !/^[^A-ZА-ЯЁ]*$/.test(value) === false) {
+                        net8andUppercase: (value: string) => {
+                            if (PasswordLength.test(value) === false && AvailabilityNumber.test(value) === true && !Uppercase.test(value) === false) {
                                 return false
                             }
                             return true
                         },
-                        length: (value: any) => /^[0-9a-zA-Zа-яА-ЯёЁ!@#$%^&*]{8,}$/.test(value) ? true : false,
-                        number: (value: any) => /[\d]/.test(value),
-                        uppercase: (value: any) => !/^[^A-ZА-ЯЁ]*$/.test(value),
+                        length: (value: string) => PasswordLength.test(value) ? true : false,
+                        number: (value: string) => AvailabilityNumber.test(value),
+                        uppercase: (value: string) => !Uppercase.test(value),
                     }
                 })}
                 name="password"
@@ -55,7 +56,7 @@ export function RecPassword({ register, errors, getFieldState, watchFields, styl
                 required={true}
             />
             {errors.password === undefined && watchFields?.length > 0 && <img src={CheckCircle} alt="CheckCircle" className={style.checkmark} role="presentation" data-test-id="checkmark" />}
-            {watchFields?.length > 0 && <Eye passShow={passShow} setPassShow={setPassShow} style={style} />}
+            {watchFields?.length > 0 && <Eye passShow={passShow} setPassShow={setPassShow} style={style.Eye} />}
             <label htmlFor="Password" className={style.placeholder}>Пароль</label>
             {errors?.password?.type === "required" && getFieldState("password").isDirty ? <div className={style.text} data-test-id="hint"><span>Пароль не менее 8 символов, с заглавной буквой и цифрой</span></div>
                 : errorLength === "length" && watchFields?.length < 1 ? <div className={style.errorFull} data-test-id="hint"><span className={style.TextRed}>Поле не может быть пустым</span></div>

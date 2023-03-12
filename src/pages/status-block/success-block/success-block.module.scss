@@ -25,16 +25,21 @@
         text-align: center;
     }
 
-    .container__btn {
-        background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
-        border-radius: 30px;
-        height: 50px;
-        border: 0px;
-        margin-top: 32px;
-        text-transform: uppercase;
-        color: white;
-        letter-spacing: 0.2px;
-        max-width: 320px;
+    .link {
         width: 97%;
+        text-align: center;
+
+        .container__btn {
+            background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+            border-radius: 30px;
+            height: 50px;
+            border: 0px;
+            margin-top: 32px;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 0.2px;
+            max-width: 320px;
+            width: 97%;
+        }
     }
 }

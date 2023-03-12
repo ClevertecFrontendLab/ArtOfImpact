@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux"
 import { selectAuth } from "../../redux/slices/auth/auth-selector"
 import style from "../authorization/authorization.module.scss"
+import { ErrorAuth } from "../status-block/error-info/error-info"
+import { StatusBlock } from "../status-block/error-block/status-block"
 import { Loader } from "../loader/loader"
-import { LoginPasswordError } from "./error/login-password-error"
 import { LoginPassword } from "./login-password/login-password"
+
 
 export function Entrance() {
 
@@ -16,7 +18,7 @@ export function Entrance() {
                         Cleverland
                     </span>
                     {statusAuthorization === "login" ? <LoginPassword /> :
-                        statusAuthorization === "error" ? <LoginPasswordError /> : null}
+                        statusAuthorization === "error" ? <StatusBlock  {...ErrorAuth} /> : null}
                 </div>
             </div>
             {statusLoading && <Loader />}

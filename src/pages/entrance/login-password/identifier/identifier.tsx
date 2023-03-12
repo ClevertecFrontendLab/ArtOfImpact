@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export function Identifier({ style, register, errors, invalidData, watchFields, setValue }: any) {
 
-    const [errorLength, setErrorLength] = useState<any>(null)
+    const [errorLength, setErrorLength] = useState("")
 
     return (
         <div className={style.form__input}>

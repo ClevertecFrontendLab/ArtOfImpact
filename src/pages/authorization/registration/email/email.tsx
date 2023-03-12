@@ -1,7 +1,6 @@
+import { EmailValidation } from "../../../reg-ex/reg-ex"
 
 export function Email({ register, style, watchFields, setErrorLength }: any) {
-
-    console.log(watchFields)
 
     return (
         <>
@@ -10,7 +9,7 @@ export function Email({ register, style, watchFields, setErrorLength }: any) {
                 {...register("email", {
                     required: "Поле не может быть пустым",
                     pattern: {
-                        value: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
+                        value: EmailValidation,
                         message: "Введите корректный e-mail"
                     }
                 })}
@@ -18,10 +17,8 @@ export function Email({ register, style, watchFields, setErrorLength }: any) {
                 onBlur={() => {
                     if (watchFields === undefined) {
                         setErrorLength("length")
-                        console.log("length")
-                    } else if (watchFields.length > 0 && /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu.test(watchFields) === false) {
+                    } else if (watchFields.length > 0 && EmailValidation.test(watchFields) === false) {
                         setErrorLength("regEmail")
-                        console.log("regEmail")
                     }
                 }}
                 required={true}

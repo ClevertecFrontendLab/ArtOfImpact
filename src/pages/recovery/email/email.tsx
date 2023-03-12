@@ -11,11 +11,13 @@ import { emailFetch, setStatusLoading, setStatusRecovery } from "../../../redux/
 import { Email } from "../../authorization/registration/email/email"
 import { selectAuth } from "../../../redux/slices/auth/auth-selector"
 
-
+interface IRecoveryEmail {
+    email: string
+}
 
 export function RecoveryEmail() {
 
-    const { register, handleSubmit, watch, formState: { errors, isValid } }: any = useForm({
+    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<IRecoveryEmail>({
         mode: "all",
     })
     const watchFields = watch("email")
@@ -24,11 +26,11 @@ export function RecoveryEmail() {
     const { errorValueEmail } = useSelector(selectAuth)
 
     const navigate = useNavigate()
-    const onSubmit = (data: any) => {
-        PasswordReset(watchFields)
+    const onSubmit = (data: IRecoveryEmail) => {
+        PasswordReset({ email: watchFields })
     };
 
-    async function PasswordReset(email: string) {
+    async function PasswordReset({ email }: IRecoveryEmail) {
         dispatch(emailFetch({ email }))
     }
     const [errorLength, setErrorLength] = useState(null)

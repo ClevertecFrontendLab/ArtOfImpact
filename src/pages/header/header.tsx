@@ -35,7 +35,7 @@ export function Header() {
             </div>
             {active && <div className={style.menu}>
                 <span className={style.menu__text}>Профиль</span>
-                {/* <span className={style.menu__text} role="presentation" onClick={() => Exit()}>Выход</span> */}
+                <span className={style.menu__text} role="presentation" onClick={() => Exit()}>Выход</span>
             </div>}
         </header >
     )

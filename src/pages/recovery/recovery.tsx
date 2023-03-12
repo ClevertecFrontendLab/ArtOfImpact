@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { Outlet, useSearchParams } from "react-router-dom"
 import { selectAuth } from "../../redux/slices/auth/auth-selector";
+import { ErrorRecovery, SuccessRecovery } from "../status-block/error-info/error-info";
+import { StatusBlock } from "../status-block/error-block/status-block";
 import { Loader } from "../loader/loader";
 import { RecoveryEmail } from "./email/email";
-import { RecoveryError } from "./error/error";
 import { RecoveryPassword } from "./password/password";
 import style from "./recovery.module.scss"
 import { RecoverySend } from "./send/send";
-import { RecoverySuccess } from "./success/success";
+import { SuccessBlock } from "../status-block/success-block/success-block";
 
 export function Recovery() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -24,8 +25,8 @@ export function Recovery() {
                     <span className={style.title}>
                         Cleverland
                     </span>
-                    {statusRecovery === "error" ? <RecoveryError />
-                        : statusRecovery === "success" ? <RecoverySuccess /> :
+                    {statusRecovery === "error" ? <StatusBlock {...ErrorRecovery} />
+                        : statusRecovery === "success" ? <SuccessBlock {...SuccessRecovery} /> :
                             CodeBe || statusRecovery === "password" ? <RecoveryPassword />
                                 : statusRecovery === "send" ? <RecoverySend />
                                     : statusRecovery === "email" ? <RecoveryEmail />

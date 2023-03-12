@@ -2,7 +2,7 @@ import style from "../registration.module.scss"
 
 
 
-export function Surname({ register, errors, numberPlaceholder4, setNumberPlaceholder4, id, watchFields }: any) {
+export function Surname({ register, errors }: any) {
     return (
         <div className={style.form__input}>
             <input type="text" id="Surname"

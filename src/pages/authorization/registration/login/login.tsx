@@ -1,3 +1,4 @@
+import { AvailabilityNumber, EnglishSymbols, LoginValidation } from "../../../reg-ex/reg-ex"
 import style from "../registration.module.scss"
 
 
@@ -10,20 +11,20 @@ export function Login({ register, errors, getFieldState }: any) {
                 {...register("username", {
                     required: "Поле не может быть пустым",
                     validate: {
-                        CyrillicNumber: (value: any) => {
-                            if (/[a-zA-Z]/.test(value) === false && /[\d]/.test(value) === true) {
+                        CyrillicNumber: (value: string) => {
+                            if (EnglishSymbols.test(value) === false && AvailabilityNumber.test(value) === true) {
                                 return false
                             }
                             return true
                         },
-                        Cyrillic: (value: any) => {
-                            if (/[a-zA-Z]/.test(value) === false && /[\d]/.test(value) === false) {
+                        Cyrillic: (value: string) => {
+                            if (EnglishSymbols.test(value) === false && AvailabilityNumber.test(value) === false) {
                                 return false
                             }
                             return true
                         },
-                        rustext: (value: any) => /^[A-Za-z0-9]+$/.test(value),
-                        number: (value: any) => /[\d]/.test(value),
+                        rustext: (value: string) => LoginValidation.test(value),
+                        number: (value: string) => AvailabilityNumber.test(value),
                     }
                 })}
                 name="username"

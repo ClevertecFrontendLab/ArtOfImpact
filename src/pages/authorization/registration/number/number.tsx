@@ -1,5 +1,6 @@
 import { Controller } from "react-hook-form"
 import MaskedInput from 'react-text-mask';
+import { NumberValidation } from "../../../reg-ex/reg-ex";
 import style from "../registration.module.scss"
 
 export function Number({ control, errors }: any) {
@@ -10,7 +11,7 @@ export function Number({ control, errors }: any) {
                 rules={
                     {
                         required: "Поле не может быть пустым",
-                        pattern: /^(\+375|80) [(](29|25|44|33)[)] (\d{3})-(\d{2})-(\d{2})$/,
+                        pattern: NumberValidation,
                     }
                 }
                 render={({ field: { onChange, onBlur, value }, fieldState: { error } }) =>

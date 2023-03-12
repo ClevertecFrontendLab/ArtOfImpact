@@ -14,7 +14,7 @@ export function IdentifierPassword({ style, register, watchFields, errors, inval
                 })}
                 required={true}
             />
-            {watchFields[1]?.length > 0 && <Eye passShow={passShow} setPassShow={setPassShow} style={style} />}
+            {watchFields[1]?.length > 0 && <Eye passShow={passShow} setPassShow={setPassShow} style={style.Eye} />}
             <label htmlFor="Password" className={style.placeholder}>Пароль</label>
             {errors?.password ? <div className={style.form__subtitleError} data-test-id="hint" ><span>Поле не может быть пустым</span></div> :
                 invalidData ? <div className={style.form__subtitleError} data-test-id="hint" /> : <div className={style.form__subtitle} />}

@@ -13,10 +13,18 @@ import { useAppDispatch } from "../../../redux/store"
 import { registrationFetch, setStatusLoading, setStatusRegistration } from "../../../redux/slices/auth/auth"
 import AutoService from "../../http/auto-service"
 
+interface IRegistration {
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    phone: string,
+    email: string
+}
 
 export function Registration() {
     const dispatch = useAppDispatch()
-    const { register, handleSubmit, watch, control, setValue, getFieldState, reset, formState: { errors, isValid, } }: any = useForm({
+    const { register, handleSubmit, watch, control, setValue, getFieldState, reset, formState: { errors, isValid, } } = useForm<IRegistration>({
         mode: "all"
     })
     const navigate = useNavigate()
@@ -24,14 +32,14 @@ export function Registration() {
 
     const watchFields = watch(["username", "password", "firstName", "lastName", "phone", "email"])
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: IRegistration) => {
         setNumberSlide(numberSlide + 1)
         if (numberSlide >= 3) {
-            Registr(watchFields[0], watchFields[1], watchFields[2], watchFields[3], watchFields[4], watchFields[5],)
+            Registr({ username: watchFields[0], password: watchFields[1], firstName: watchFields[2], lastName: watchFields[3], phone: watchFields[4], email: watchFields[5], })
         }
     };
 
-    async function Registr(username: string, password: string, firstName: string, lastName: string, phone: string, email: string) {
+    async function Registr({ username, password, firstName, lastName, phone, email }: IRegistration) {
         dispatch(registrationFetch({ email, username, password, firstName, lastName, phone }))
     }
     const [errorLength, setErrorLength] = useState(null)
@@ -55,7 +63,8 @@ export function Registration() {
                             <Number control={control} errors={errors} />
                             <div className={style.form__input}>
                                 <Email register={register} style={style} setErrorLength={setErrorLength} />
-                                {errorLength === "length" && watchFields[5].length < 1 ? <div className={style.errorFull} data-test-id="hint"><span className={style.TextRed}>Поле не может быть пустым</span></div> :
+                                {errorLength === "length" && watchFields[5].length < 1 ? <div className={style.errorFull}
+                                    data-test-id="hint"><span className={style.TextRed}>Поле не может быть пустым</span></div> :
                                     errors?.email ? <div className={style.errorFull} data-test-id="hint"><span className={style.TextRed}>{errors.email.message}</span></div>
                                         : <div className={style.text}>Введите корректный e-mail</div>}
                             </div>

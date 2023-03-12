@@ -7,8 +7,6 @@ export const RequireAuth = ({ children }: any) => {
     const fromPage = location.state?.from?.pathname || "/"
     const token = localStorage.getItem("token")
 
-    console.log(fromPage)
-
     if (token !== null) {
         return children
     }
