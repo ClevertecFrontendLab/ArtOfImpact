@@ -6,7 +6,7 @@ import cat from "../../../../photo/image/cat.svg"
 import { Rating } from "../../../rating-fn/rating"
 import { selectContent } from "../../../../redux/slices/content/content-selector"
 import { FilterRed } from "./red-color"
-import { BASE_URL } from "../../../host-url"
+import { BASE_URL } from "../../../http/host-url"
 
 
 

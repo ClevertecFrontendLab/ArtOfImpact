@@ -4,7 +4,7 @@ import style from "./body-colum.module.scss"
 import cat from "../../../../photo/image/cat.svg"
 import { Rating } from "../../../rating-fn/rating"
 import { selectContent } from "../../../../redux/slices/content/content-selector"
-import { BASE_URL } from "../../../host-url"
+import { BASE_URL } from "../../../http/host-url"
 
 
 export function BodyColum() {

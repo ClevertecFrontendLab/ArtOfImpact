@@ -1,0 +1,40 @@
+.container {
+    height: 200px;
+    background: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .container__title {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        color: #363636;
+        padding-bottom: 32px;
+    }
+
+    .container__subtitle {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 410px;
+        color: #363636;
+        text-align: center;
+        padding: 0px 5px;
+    }
+
+    .container__btn {
+        background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+        border-radius: 30px;
+        height: 50px;
+        border: 0px;
+        margin-top: 32px;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 0.2px;
+        max-width: 320px;
+        width: 100%;
+    }
+}

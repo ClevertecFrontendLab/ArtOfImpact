@@ -1,0 +1,25 @@
+.background {
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+        width: 100%;
+        max-width: 530px;
+        margin: 0px 15px;
+
+
+        .title {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 40px;
+            color: white;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 50px;
+        }
+    }
+}

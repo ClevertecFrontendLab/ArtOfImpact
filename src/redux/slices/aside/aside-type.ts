@@ -1,5 +1,5 @@
 export type Asides = {
-    name: string, path: string, id: number
+    name: string, path: string, id: number,
 }
 
 export interface AsideSliceState {

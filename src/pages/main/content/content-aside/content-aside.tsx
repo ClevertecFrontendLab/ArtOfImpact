@@ -65,17 +65,26 @@ export function Aside() {
     }, [burger, dispatch])
 
     function activeDefault() {
-        dispatch(setActiveNumber(0))
-        dispatch(contentFetch())
-        navigate(`/books/all`)
+        const token = localStorage.getItem("token")
+        if (token !== null) {
+            dispatch(setActiveNumber(0))
+            dispatch(contentFetch({ token }))
+            navigate(`/books/all`)
+        }
     }
 
     function activeFilter(el: Asides) {
-        dispatch(setActiveNumber(el.id))
-        dispatch(filterFetch(el))
-        navigate(`/books/${el.path}`)
+        const token = localStorage.getItem("token")
+        if (token) {
+            dispatch(setActiveNumber(el.id))
+            dispatch(filterFetch({ name: el.name, token }))
+            navigate(`/books/${el.path}`)
+        }
     }
-
+    function Exit() {
+        localStorage.removeItem("token")
+        navigate("/auth")
+    }
     return (
         <div className={cn(style.container, { [style.active]: burger })} ref={blockRef} onClick={(event) => event.stopPropagation()}
             role="presentation" data-test-id='burger-navigation'>
@@ -118,7 +127,7 @@ export function Aside() {
             {width < 1000 &&
                 <div className={style.user}>
                     <span className={style.user__title}>Профиль</span>
-                    <span className={style.user__subtitle}>Выход</span>
+                    <span className={style.user__subtitle} onClick={() => Exit()} role="presentation" data-test-id="exit-button">Выход</span>
                 </div>}
         </div>
     )

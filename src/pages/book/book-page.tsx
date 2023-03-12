@@ -31,8 +31,11 @@ export function BookPage() {
 
     useEffect(() => {
         setWidth(window.innerWidth)
+        const token = localStorage.getItem("token")
         if (bookId) {
-            dispatch(bookFetch({ bookId }))
+            if (token) {
+                dispatch(bookFetch({ bookId, token }))
+            }
         }
     }, [])
 

@@ -1,16 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable  import/no-default-export */
-import axios from "axios";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { type } from "os";
 import { Asides, AsideSliceState } from "./aside-type";
+import UserService from "../../../pages/http/users-service";
 
+interface TokenCategories {
+    token: string
+}
 
-export const asideFetch = createAsyncThunk('/aside/asideFetch', async () => {
-    const { data } = await axios.get<Asides[]>('https://strapi.cleverland.by/api/categories')
+export const asideFetch = createAsyncThunk('/aside/asideFetch', async (params: TokenCategories) => {
+    const { data } = await UserService.fetchCategories()
     return data
 })
-
 
 
 const initialState: AsideSliceState = {

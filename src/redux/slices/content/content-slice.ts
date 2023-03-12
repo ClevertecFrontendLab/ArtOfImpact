@@ -1,34 +1,37 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable  import/no-default-export */
-import axios from "axios";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { type } from "os";
 import { BookFetch, ContentSliceState, IContent } from "./content-type";
-import { Asides } from "../aside/aside-type"
+import UserService from "../../../pages/http/users-service";
 
 
-export const contentFetch = createAsyncThunk('/content/contentFetch', async (params, thunkAPI) => {
-    const { data } = await axios.get('https://strapi.cleverland.by/api/books')
+
+interface Token {
+    token: string
+}
+export const contentFetch = createAsyncThunk('/content/contentFetch', async (params: Token, thunkAPI) => {
+    const { data } = await UserService.fetchBooks()
     const state: any = thunkAPI.getState()
     const aside = state.aside.asides
     return { data, aside }
 })
 
-
-export const filterFetch = createAsyncThunk('/content/filterFetch', async (params: Asides, thunkAPI) => {
-    const { name } = params
-    const { data } = await axios.get('https://strapi.cleverland.by/api/books')
+interface TokenFilter {
+    token: string,
+    name: string
+}
+export const filterFetch = createAsyncThunk('/content/filterFetch', async (params: TokenFilter, thunkAPI) => {
+    const { name, token } = params
+    const { data } = await UserService.fetchBooks()
     const result = data.filter((el: IContent) => el.categories[0] === name)
     const state: any = thunkAPI.getState()
     const aside = state.aside.asides
-    console.log("filter")
     return { result, aside, data }
 })
 
-
 export const bookFetch = createAsyncThunk('/content/bookFetch', async (params: BookFetch) => {
-    const { bookId } = params
-    const { data } = await axios.get(`https://strapi.cleverland.by/api/books/${bookId}`)
+    const { bookId, token } = params
+    const { data } = await UserService.fetchBook({ bookId })
     return data
 })
 
