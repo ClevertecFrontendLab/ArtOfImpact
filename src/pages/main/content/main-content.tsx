@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import style from "./main-content.module.scss"
 import { BodyRow } from './content-body/body-row';
 import { BodyColum } from './content-body/body-colum';
@@ -18,6 +18,7 @@ import { setActiveNumber } from "../../../redux/slices/aside/aside-slice";
 
 
 export function Content() {
+    const navigate = useNavigate()
     const location = useLocation()
     const dispatch = useAppDispatch()
     const [isButton, setIsButton] = useState<boolean>(true)
@@ -25,14 +26,17 @@ export function Content() {
     const { asides } = useSelector(selectAside)
 
     useEffect(() => {
-        if (location.pathname === '/books/all') {
-            dispatch(contentFetch())
-        } else {
-            dispatch(addContent([]))
-            const name = location.pathname.split("/")
-            const rusName = asides.filter((el) => el.path === name[name.length - 1])
-            dispatch(filterFetch(rusName[0]))
-            dispatch(setActiveNumber(rusName[0].id))
+        const token = localStorage.getItem("token")
+        if (token !== null) {
+            if (location.pathname === '/books/all') {
+                dispatch(contentFetch({ token }))
+            } else {
+                dispatch(addContent([]))
+                const rusName = location.pathname.split("/")
+                const name = asides.filter((el) => el.path === rusName[rusName.length - 1])
+                dispatch(filterFetch({ name: name[0]?.name, token }))
+                dispatch(setActiveNumber(name[0].id))
+            }
         }
     }, [])
 

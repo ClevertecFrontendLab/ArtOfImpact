@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import "./swiper.css"
 import cat from "../../../../photo/image/cat.svg"
-import { BASE_URL } from "../../../host-url";
+import { BASE_URL } from "../../../http/host-url";
 
 
 export function Swipers(props) {

@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import { Pagination } from "swiper";
 import "./swiper-colum.css"
 import cat from "../../../../photo/image/cat.svg"
-import { BASE_URL } from "../../../host-url";
+import { BASE_URL } from "../../../http/host-url";
 
 
 export function SwiperColum(props) {

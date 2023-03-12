@@ -1,5 +1,6 @@
 export type BookFetch = {
     bookId: string;
+    token: string
 }
 
 export interface ContentSliceState {
